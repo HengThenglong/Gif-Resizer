@@ -33,7 +33,19 @@ namespace Gif_Resizer
             {
                 PicBox.Image = new Bitmap(openFileDialog.FileName);
                 File = new FileInfo(openFileDialog.FileName);
-                BtnConvert.Enabled = true;
+                EnableConvertBtn();
+                BtnOpenFile.Hide();
+
+
+                using (var collection = new MagickImageCollection(File))
+                {
+                    var firstFrame = collection[0];
+                    var width = firstFrame.Width;
+                    var height = firstFrame.Height;
+
+                    NumericUpDownWidth.Value = width;
+                    NumericUpDownHeight.Value = height;
+                }
             }
         }
 
@@ -53,7 +65,8 @@ namespace Gif_Resizer
                 // the height will be calculated with the aspect ratio.
                 foreach (var image in collection)
                 {
-                    image.Resize(200, 200);
+                    //image.Resize(200, 200);
+                    image.Resize((int)NumericUpDownWidth.Value, (int)NumericUpDownHeight.Value);
                 }
 
                 Directory.CreateDirectory(File.Directory + "\\Converted");
@@ -64,5 +77,71 @@ namespace Gif_Resizer
 
             }
         }
+
+        Boolean CanConvert()
+        {
+            if (File != null && NumericUpDownWidth.Value > 0 && NumericUpDownHeight.Value > 0)
+                return true;
+
+
+            return false;
+        }
+
+        void EnableConvertBtn()
+        {
+            var canConvert = CanConvert();
+
+            if (canConvert) BtnConvert.Enabled = true;
+            else BtnConvert.Enabled = false;
+        }
+
+        private void NumericUpDownWidth_ValueChanged(object sender, EventArgs e)
+        {
+            EnableConvertBtn();
+
+            if (File != null)
+            {
+                using (var collection = new MagickImageCollection(File))
+                {
+
+
+                    var firstFrame = collection[0];
+                    var width = firstFrame.Width;
+                    var height = firstFrame.Height;
+
+                    if (NumericUpDownWidth.Value == width) return;
+
+                    float aspectRatio = (float)height / width;
+                    float newHeight = (float)aspectRatio * width;
+
+                    NumericUpDownHeight.Value = (decimal)newHeight;
+                }
+            }
+        }
+
+        private void NumericUpDownHeight_ValueChanged(object sender, EventArgs e)
+        {
+            EnableConvertBtn();
+
+            if (File != null)
+            {
+                using (var collection = new MagickImageCollection(File))
+                {
+                    var firstFrame = collection[0];
+                    var width = firstFrame.Width;
+                    var height = firstFrame.Height;
+
+                    if (NumericUpDownHeight.Value == height) return;
+
+
+                    float aspectRatio = (float)height / width;
+                    float newWidth = (float)NumericUpDownHeight.Value / aspectRatio;
+
+                    NumericUpDownHeight.Value = (decimal)newWidth;
+                }
+            }
+        }
+
+
     }
 }

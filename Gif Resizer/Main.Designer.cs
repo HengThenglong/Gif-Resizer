@@ -31,15 +31,21 @@
             this.BtnConvert = new System.Windows.Forms.Button();
             this.BtnOpenFile = new System.Windows.Forms.Button();
             this.PicBox = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.NumericUpDownWidth = new System.Windows.Forms.NumericUpDown();
+            this.NumericUpDownHeight = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownWidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownHeight)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnConvert
             // 
             this.BtnConvert.Enabled = false;
             this.BtnConvert.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.BtnConvert.Location = new System.Drawing.Point(709, 281);
+            this.BtnConvert.Location = new System.Drawing.Point(615, 237);
             this.BtnConvert.Name = "BtnConvert";
             this.BtnConvert.Size = new System.Drawing.Size(90, 38);
             this.BtnConvert.TabIndex = 0;
@@ -50,7 +56,7 @@
             // BtnOpenFile
             // 
             this.BtnOpenFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.BtnOpenFile.Location = new System.Drawing.Point(12, 281);
+            this.BtnOpenFile.Location = new System.Drawing.Point(101, 128);
             this.BtnOpenFile.Name = "BtnOpenFile";
             this.BtnOpenFile.Size = new System.Drawing.Size(90, 38);
             this.BtnOpenFile.TabIndex = 1;
@@ -68,29 +74,87 @@
             this.PicBox.TabIndex = 2;
             this.PicBox.TabStop = false;
             // 
-            // label1
+            // label2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(49, 136);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(196, 24);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Click Open File Below";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(319, 76);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(58, 24);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Width";
             // 
-            // Form1
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(319, 136);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 24);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Height";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(323, 194);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(382, 12);
+            this.progressBar1.TabIndex = 8;
+            // 
+            // NumericUpDownWidth
+            // 
+            this.NumericUpDownWidth.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.NumericUpDownWidth.Location = new System.Drawing.Point(413, 71);
+            this.NumericUpDownWidth.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.NumericUpDownWidth.Name = "NumericUpDownWidth";
+            this.NumericUpDownWidth.Size = new System.Drawing.Size(292, 29);
+            this.NumericUpDownWidth.TabIndex = 9;
+            this.NumericUpDownWidth.ValueChanged += new System.EventHandler(this.NumericUpDownWidth_ValueChanged);
+            // 
+            // NumericUpDownHeight
+            // 
+            this.NumericUpDownHeight.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.NumericUpDownHeight.Location = new System.Drawing.Point(413, 132);
+            this.NumericUpDownHeight.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.NumericUpDownHeight.Name = "NumericUpDownHeight";
+            this.NumericUpDownHeight.Size = new System.Drawing.Size(292, 29);
+            this.NumericUpDownHeight.TabIndex = 10;
+            this.NumericUpDownHeight.ValueChanged += new System.EventHandler(this.NumericUpDownHeight_ValueChanged);
+            // 
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(811, 327);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.PicBox);
+            this.ClientSize = new System.Drawing.Size(717, 284);
+            this.Controls.Add(this.NumericUpDownHeight);
+            this.Controls.Add(this.NumericUpDownWidth);
+            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.BtnOpenFile);
             this.Controls.Add(this.BtnConvert);
+            this.Controls.Add(this.PicBox);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
-            this.Name = "Form1";
+            this.Name = "Main";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownWidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownHeight)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -101,7 +165,11 @@
         private System.Windows.Forms.Button BtnConvert;
         private System.Windows.Forms.Button BtnOpenFile;
         private System.Windows.Forms.PictureBox PicBox;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.NumericUpDown NumericUpDownWidth;
+        private System.Windows.Forms.NumericUpDown NumericUpDownHeight;
     }
 }
 
