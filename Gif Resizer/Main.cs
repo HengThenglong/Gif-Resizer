@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace Gif_Resizer
 {
-    public partial class Form1 : Form
+    public partial class Main : Form
     {
-        public Form1()
+        public Main()
         {
             InitializeComponent();
         }
@@ -61,7 +61,7 @@ namespace Gif_Resizer
                 // Save the result
                 //collection.Write($"{File}_Convert.gif");
                 collection.Write(File);
-                
+
             }
         }
     }
